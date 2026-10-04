@@ -432,13 +432,28 @@ docs target *args:
     #!/usr/bin/env bash
     just "_docs_$1" "${@:2}"
 
+# Install the zola-docs theme, CI does the same through zola-docs-action
 [private]
-_docs_build:
+_docs_theme:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    src="$HOME/Projects/zola-docs-action/theme"
+    if [ ! -d "$src" ]; then
+        tmp=$(mktemp -d)
+        git clone -q --depth 1 https://github.com/gabrielkoerich/zola-docs-action "$tmp"
+        src="$tmp/theme"
+    fi
+    mkdir -p docs/themes
+    [ -d docs/themes/zola-docs ] && trash docs/themes/zola-docs
+    cp -R "$src" docs/themes/zola-docs
+
+[private]
+_docs_build: _docs_theme
     @zola --root docs build
 
 [private]
-_docs_serve:
-    @zola --root docs serve --open
+_docs_serve: _docs_theme
+    @zola --root docs serve --open --drafts
 
 ############################
 #  Legacy manual & Services

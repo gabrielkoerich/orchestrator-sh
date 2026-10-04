@@ -260,12 +260,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: taiki-e/install-action@v2
+      - uses: gabrielkoerich/zola-docs-action@v1
         with:
-          tool: zola@0.22.1
-      - run: zola --root docs build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/public
+          path: docs
+          zola-version: "0.22.1"
       - id: deployment
         uses: actions/deploy-pages@v4
