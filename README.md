@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/gabrielkoerich/orchestrator/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/gabrielkoerich/orchestrator/actions/workflows/release.yml?query=branch%3Amain)
 
+> **Superseded by [orch](https://github.com/gabrielkoerich/orch).** This repository is no longer maintained. Use orch instead, its docs are at [orch.gabrielkoerich.com](https://orch.gabrielkoerich.com).
+
 A lightweight autonomous agent orchestrator that routes tasks to AI coding agents, manages their execution in isolated git worktrees, and tracks the full lifecycle from GitHub Issue to merged PR. GitHub Issues are the native task backend — labels drive status, comments carry agent output, and sub-issues handle delegation. Agents run via CLI tools (`claude`, `codex`, and `opencode`) in tmux sessions with full tool access.
 
 ## Install
